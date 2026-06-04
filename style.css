@@ -1,0 +1,135 @@
+/* =============================================================================
+   Input on Top — layout overrides for ChatGPT & Claude
+   -----------------------------------------------------------------------------
+   This stylesheet has TWO layers:
+
+     1. PRIMARY  — driven by data-* attributes that content.js stamps at
+                   runtime. This is what reliably performs the flip and is
+                   immune to the sites renaming their CSS classes.
+
+     2. FALLBACK — best-effort, CSS-only hints per site. They only set
+                   `order` / `position`, which are harmless no-ops when the
+                   parent is not a flex container, so they can never break the
+                   page even if the markup changes.
+
+   Contributors: if the layout ever stops flipping, the selectors you most
+   likely need to update live in content.js (CONFIG) and in the FALLBACK
+   section below. See README.md → "Customizing / fixing selectors".
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   1. PRIMARY LAYER  (attribute-driven — do not edit unless renaming the hooks)
+
+   content.js locates the composer + the scrollable conversation, finds their
+   nearest common ancestor, and tags:
+
+       [data-chatflip-root]            -> common ancestor (becomes a flex column)
+       [data-chatflip-composer-branch] -> the child holding the input  (-> top)
+       [data-chatflip-scroll-branch]   -> the child holding the messages
+       [data-chatflip-composer]        -> the <form> itself
+   -------------------------------------------------------------------------- */
+
+[data-chatflip-root] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* keep the composer at the very top */
+}
+
+/* Move the input branch above the message branch.
+   Using `order` (rather than `flex-direction: column-reverse`) preserves the
+   natural DOM / tab order and only changes the *visual* position. */
+[data-chatflip-composer-branch] {
+  order: -1 !important;
+  flex: 0 0 auto !important;     /* the input keeps its natural height */
+  margin-top: 12px !important;   /* a little breathing room above the input
+                                    (otherwise it sits flush to the top edge) */
+  /* Re-pin the composer to the TOP. On ChatGPT the composer was held at the
+     bottom with `position: sticky; bottom: 0`; flipping it to `top: 0` keeps
+     it visible at the top while the conversation scrolls underneath. If the
+     site doesn't scroll here, sticky simply behaves like static. */
+  position: sticky !important;
+  top: 12px !important;          /* keep the gap even when pinned/scrolled
+                                    (matches margin-top so it never collapses) */
+  bottom: auto !important;
+  z-index: 30 !important;
+}
+
+/* Let the conversation take the remaining height and scroll ON ITS OWN. This is
+   what stops the page from reflowing when the composer grows while you type:
+   content.js bounds the root to the scroll viewport's height, and this internal
+   scroll then absorbs the composer's resizing instead of shoving the messages. */
+[data-chatflip-scroll-branch] {
+  order: 0 !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;        /* REQUIRED: without this a flex child won't scroll */
+  overflow-y: auto !important;     /* the message area scrolls internally */
+  overflow-anchor: auto !important;/* keep the view steady as the composer resizes */
+}
+
+/* Wrappers BETWEEN the editor and its branch are sometimes bottom-pinned
+   (position: sticky / fixed / absolute) too. content.js tags those inner nodes
+   with data-chatflip-unpin so they don't drag the composer back down. The
+   branch itself is NOT neutralized here — it is re-pinned to the top above. */
+[data-chatflip-unpin] {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+}
+
+
+/* -----------------------------------------------------------------------------
+   2. FALLBACK LAYER  (best-effort, CSS-only — safe to tweak)
+
+   These rules use highly semantic `:has()` selectors so they keep working
+   across class-name churn. They only nudge `order` / `position`, so if the
+   parent happens not to be a flex container the rules simply do nothing.
+   -------------------------------------------------------------------------- */
+
+/* ---- ChatGPT (chatgpt.com) ---- */
+main form:has(#prompt-textarea),
+main form:has(textarea) {
+  order: -1 !important;
+  position: relative !important;
+  bottom: auto !important;
+}
+
+/* ---- Claude (claude.ai) ---- */
+/* Claude's composer is NOT inside a <form>, so target the editor's wrapper. */
+main :has(> .ProseMirror),
+main :has(> [contenteditable="true"]) {
+  order: -1 !important;
+  position: relative !important;
+  bottom: auto !important;
+}
+
+/* ---- Gemini (gemini.google.com) ---- */
+/* Gemini's composer is a Quill .ql-editor inside a <rich-textarea>. */
+:has(> rich-textarea),
+:has(> .ql-editor) {
+  order: -1 !important;
+  position: relative !important;
+  bottom: auto !important;
+}
+
+
+/* -----------------------------------------------------------------------------
+   3. OPTIONAL TWEAKS  (disabled by default — uncomment to taste)
+   -------------------------------------------------------------------------- */
+
+/* Put a little breathing room under the composer once it sits at the top. */
+/*
+[data-chatflip-composer] {
+  margin-bottom: 8px !important;
+}
+*/
+
+/* Reverse the message order too, so your newest message sits right under the
+   input instead of at the bottom of the log. NOTE: this can fight the sites'
+   auto-scroll-to-bottom behaviour, so it's off by default.
+*/
+/*
+[data-chatflip-scroll-branch] {
+  flex-direction: column-reverse !important;
+}
+*/

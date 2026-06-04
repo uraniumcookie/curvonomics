@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curvonomics — you're all set</title>
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --muted: #86868b;
+      --on: #34c759;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: var(--ink);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px 40px 30px;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10),
+                  0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .sub {
+      margin: 0 0 28px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .tip {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      text-align: left;
+      background: #f0fbf3;
+      border: 1px solid #cdeed6;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 26px;
+    }
+
+    .tip .dot {
+      flex: 0 0 auto;
+      color: var(--on);
+      font-size: 12px;
+      line-height: 22px;
+    }
+
+    .tip p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .tip strong { font-weight: 600; }
+
+    kbd {
+      font-family: inherit;
+      font-size: 12px;
+      background: #ffffff;
+      border: 1px solid #d2d2d7;
+      border-radius: 5px;
+      padding: 1px 6px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
+    }
+
+    .sites {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      font-size: 13px;
+      font-weight: 500;
+      background: #f5f5f7;
+      border-radius: 999px;
+      padding: 8px 16px;
+    }
+
+    .footer {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer a {
+      color: var(--on);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="icon" src="icons/icon-on-128.png" alt="Curvonomics">
+    <h1>You're all set</h1>
+    <p class="sub">Curvonomics is installed — your chat input now sits at the top.</p>
+
+    <div class="tip">
+      <span class="dot">&#9679;</span>
+      <p><strong>One thing:</strong> if you already have ChatGPT, Claude, or Gemini
+         open, <strong>refresh those tabs</strong>
+         (<kbd>&#8984; R</kbd> / <kbd>Ctrl R</kbd>) to flip them. Any tab you open
+         from now on works automatically.</p>
+    </div>
+
+    <div class="sites">
+      <span class="chip">ChatGPT</span>
+      <span class="chip">Claude</span>
+      <span class="chip">Gemini</span>
+    </div>
+
+    <p class="footer">
+      Toggle it anytime from the toolbar &middot;
+      <a href="https://curvlabs.io" target="_blank" rel="noopener noreferrer">curvlabs.io</a>
+    </p>
+  </div>
+</body>
+</html>

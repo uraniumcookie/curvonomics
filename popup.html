@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curvonomics</title>
+  <style>
+    :root {
+      --ink: #1d1d1f;        /* near-black title */
+      --muted: #86868b;      /* gray subtitle  */
+      --on: #34c759;         /* iOS green      */
+      --off: #e9e9ea;        /* iOS off-gray   */
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+
+    body {
+      width: 264px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: var(--ink);
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+    }
+
+    .text { min-width: 0; }
+
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin-top: 3px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* curvlabs.io link, left-aligned under the title and subtitle. */
+    .linkline {
+      margin-top: 2px;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .site {
+      color: var(--on);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .site:hover,
+    .site:focus-visible {
+      text-decoration: underline;
+    }
+
+    /* ---- iOS-style toggle ---- */
+    .switch {
+      position: relative;
+      flex: 0 0 auto;
+      width: 46px;
+      height: 28px;
+      /* Hidden until popup.js applies the saved state (it adds .ready to <body>).
+         Stops the toggle from visibly sliding from its default to the real
+         state when you open the popup. */
+      visibility: hidden;
+    }
+
+    .switch input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      background-color: var(--off);
+      border-radius: 999px;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 24px;
+      height: 24px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+    }
+
+    .switch input:checked + .slider {
+      background-color: var(--on);
+    }
+
+    .switch input:checked + .slider::before {
+      transform: translateX(18px);
+    }
+
+    .switch input:focus-visible + .slider {
+      outline: 2px solid var(--on);
+      outline-offset: 2px;
+    }
+
+    /* Once popup.js has applied the saved state it adds .ready to <body>:
+       reveal the toggle and (re-)enable the slide animation, so the toggle
+       appears already in the correct position and only animates on real clicks. */
+    body.ready .switch { visibility: visible; }
+    body.ready .slider { transition: background-color 0.2s ease; }
+    body.ready .slider::before { transition: transform 0.2s ease; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="text">
+      <div class="title">Curvonomics</div>
+      <div class="subtitle">by Curv, the movement company</div>
+      <div class="linkline"><a class="site" href="https://curvlabs.io" target="_blank" rel="noopener noreferrer">curvlabs.io</a></div>
+    </div>
+
+    <label class="switch" title="Toggle input-on-top">
+      <input type="checkbox" id="toggle" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

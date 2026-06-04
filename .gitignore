@@ -1,0 +1,14 @@
+# OS / editor / tooling noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+
+# Old placeholder icons (kept locally, not shipped)
+icons/backup_old/
+
+# Packaging output
+*.zip
+dist/
+*.pem
