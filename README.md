@@ -2,7 +2,7 @@
 
 A tiny Chrome extension that moves the chat input box to the **top** of the page on **ChatGPT, Claude, and Gemini** — so you type up top and the conversation scrolls below.
 
-Made by [Curv](https://curvlabs.io).
+Made by [Curv](https://curvlabs.io), the movement company.
 
 ## Set it up (2 minutes)
 
