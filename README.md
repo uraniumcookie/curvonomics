@@ -6,8 +6,10 @@ Made by [Curv](https://curvlabs.io), the movement company.
 
 ## Set it up (2 minutes)
 
-1. **Get the files** — click the green **Code** button above → **Download ZIP**, then unzip it. *(Or `git clone` the repo.)*
-2. In Chrome, copy **`chrome://extensions`** into the address bar and press Enter. *(Chrome blocks `chrome://` links, so it can't be clickable — paste it.)*
+1. **Download ZIP**, then unzip it. *(Or `git clone` the repo, if you must.)*
+
+2. In Chrome, copy **`chrome://extensions`** into the address bar and press Enter. 
+
 3. Turn on **Developer mode** (toggle, top-right).
 4. Click **Load unpacked** and select the unzipped folder (the one containing `manifest.json`).
 5. Open ChatGPT, Claude, or Gemini — the input is now at the top.
