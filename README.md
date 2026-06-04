@@ -4,7 +4,7 @@ A tiny Chrome extension that moves the chat input box to the **top** of the page
 
 Made by [Curv](https://curvlabs.io), the movement company.
 
-## Set it up (2 minutes)
+## Set it up (30 seconds)
 
 1. **Download ZIP**, then unzip it. *(Or `git clone` the repo, if you must.)*
 
