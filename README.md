@@ -16,7 +16,7 @@ Made by [Curv](https://curvlabs.io), the movement company.
 
 That's it. 
 
-*(If a tab was already open before you installed, refresh it once.)*
+*(If a tab was already open, refresh it.)*
 
 ## Using it
 
