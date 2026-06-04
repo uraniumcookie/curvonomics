@@ -14,7 +14,9 @@ Made by [Curv](https://curvlabs.io), the movement company.
 4. Click **Load unpacked** and select the unzipped folder (the one containing `manifest.json`).
 5. Open ChatGPT, Claude, or Gemini — the input is now at the top.
 
-That's it. *(If a tab was already open before you installed, refresh it once.)*
+That's it. 
+
+*(If a tab was already open before you installed, refresh it once.)*
 
 ## Using it
 
